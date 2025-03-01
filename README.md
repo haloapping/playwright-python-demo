@@ -2,7 +2,7 @@
 marp: true
 ---
 
-# Play with Playwright
+# Play with ~~Katalon~~ Playwright
 
 ![Playwright Logo](/images/playwright.svg)
 
@@ -10,7 +10,8 @@ marp: true
 
 ## Caution‼️
 
-- Don’t focus on the code. I only want to share about another tool for automation testing :)
+- Prerequisite: Basic programming with Python.
+- Don’t focus on the code. I only want to share about another tool for automation testing 😉.
 - Don't implement automation testing with this tool now. Need more research 📚️.
 
 ---
@@ -29,15 +30,15 @@ marp: true
 
 ## Why Playwright?
 
-- Multi-Browser Support (Google Chorme, Firefox, Microsoft Edge, and Safari).
+- Multi-Browser Support (Google Chrome, Firefox, Microsoft Edge, and Safari).
 - Multi-Language Support (Java, JavaScript, Python).
 - Headless and Headful Modes.
 - Native Mobile Emulation.
-- Have a core features, like fill field, screenshot, video record and more.
+- Have a core features, like standard input form, screenshot, video record and etc.
 
 ---
 
-## Features
+## Features ([Features API](https://playwright.dev/python/docs/api/class-playwright))
 
 ![Features](/images/features.png)
 
@@ -49,15 +50,18 @@ marp: true
 
 ---
 
-## Pros✅ and Cons❌
+## Comparison
 
-|           | Katalon                                                     | Playwright                                  |
-| --------- | ----------------------------------------------------------- | ------------------------------------------- |
-| Free?     | Nooooo! 💸                                                  | Yesssss 🤟🏻                                  |
-| Support?  | Documentation, Customer Service, Bu Silvy, Mario and Andre. | Documentation and Community (StackOverflow) |
-| Features? | Basic + Advanced                                            | Basic + Advanced                            |
-| GUI?      | Yess                                                        | Oh nooo...                                  |
+|                   | Katalon                                                     | Playwright                                  |
+| ----------------- | ----------------------------------------------------------- | ------------------------------------------- |
+| **Support?**      | Documentation, Customer Service, Bu Silvy, Mario and Andre. | Documentation and Community (StackOverflow) |
+| **Native Mobile** | Supported                                                   | Not supported (Emulate mobile web only)     |
+| **Features?**     | Basic + Advanced                                            | Basic + Advanced                            |
+| **GUI?**          | Yess                                                        | Oh nooo...                                  |
+| **Free?**         | Nooooo! 💸                                                  | Yesssss 🤟🏻                                  |
 
 ---
 
 ## Thank you
+
+![Thank You](/images/alek.jpg)
