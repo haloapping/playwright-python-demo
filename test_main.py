@@ -1,9 +1,10 @@
 from openpyxl import load_workbook
 from playwright.sync_api import sync_playwright
-from selector import selector
+from locator import selector
 
 
 def test_demo():
+    print("\nRunning automation test...")
     with sync_playwright() as p:
         # Config browser and context page
         browser = p.chromium.launch(headless=False, slow_mo=1000)
@@ -39,7 +40,6 @@ def test_demo():
         page.fill(selector.COMMENT_INPUT_TEXT, "Apping Ganteng :P")
         page.screenshot(path="screenshot/003-appointment-form.png", full_page=True)
         page.click(selector.BOOK_APPOINTMENT_BTN)
-
         page.screenshot(path="screenshot/004-appointment-success.png", full_page=True)
 
         # Save appointment to excel file
@@ -53,8 +53,9 @@ def test_demo():
         ws["C" + str(last_row)] = page.inner_text(selector.HEALTHCARE_PROGRAM_TEXT)
         ws["D" + str(last_row)] = page.inner_text(selector.VISIT_DATE_TEXT)
         ws["E" + str(last_row)] = page.inner_text(selector.COMMENT_TEXT)
-
         wb.save("appointment.xlsx")
 
         context.close()
         browser.close()
+
+    print("Done")
