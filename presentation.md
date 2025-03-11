@@ -6,9 +6,22 @@ marp: true
 
 ![Playwright Logo](/images/playwright.svg)
 
+by [haloapping](https://haloapping.com/)
+
 ---
 
-## Caution‼️
+## Outline 🧵
+
+1. What is Playwright?
+2. Who is use?
+3. Why Playwright?
+4. Features
+5. Demo (with simple app)
+6. Comparison
+
+---
+
+## Caution ‼️
 
 - Don’t focus on the code. I only want to share about another tool for automation test 😉.
 - Don't implement automation test with this tool now. Need more research 📚️.
