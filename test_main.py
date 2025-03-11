@@ -1,3 +1,4 @@
+import logging
 import os
 from openpyxl import load_workbook, Workbook
 from playwright.sync_api import sync_playwright
@@ -5,7 +6,7 @@ from selector import select
 
 
 def test_demo():
-    print("\nRunning automation test...")
+    logging.info("Running automation test...")
 
     with sync_playwright() as p:
         # Config browser and context page
@@ -44,7 +45,7 @@ def test_demo():
         page.fill(select.COMMENT_INPUT_TEXT, "Apping Ganteng :P")
         page.screenshot(path="screenshot/003-appointment-form.png", full_page=True)
         page.click(select.BOOK_APPOINTMENT_BTN)
-        page.screenshot(path="screenshot/004-appointment-success.png", full_page=True)
+        page.screenshot(path="screenshot/004-appointment-confirmation.png", full_page=True)
 
         # Save appointment to excel file
         if not os.path.exists("appointment.xlsx"):
@@ -77,4 +78,4 @@ def test_demo():
         context.close()
         browser.close()
 
-    print("Done")
+    logging.info("Done")
