@@ -1,8 +1,22 @@
 import logging
 import os
-from openpyxl import load_workbook, Workbook
+import random
+
+import pendulum
+from openpyxl import Workbook, load_workbook
 from playwright.sync_api import sync_playwright
+
+import config
 from selector import select
+
+
+def generate_random_date(start_date, end_date):
+    days_diff = (end_date - start_date).days
+    random_days = random.randint(0, days_diff)
+    random_date = start_date.add(days=random_days)
+    formatted_date = random_date.format("DD/MM/YYYY")
+
+    return formatted_date
 
 
 def test_demo():
@@ -10,18 +24,23 @@ def test_demo():
 
     with sync_playwright() as p:
         # Config browser and context page
-        browser = p.chromium.launch(headless=True, slow_mo=1000)
+        browser = p.chromium.launch(headless=config.HEADLESS, slow_mo=config.SLOW_MO)
         context = browser.new_context(
             record_video_dir="screen-record/",
-            record_video_size={"width": 1920, "height": 1080},
+            record_video_size={
+                "width": config.VIDEO_SIZE_WIDTH,
+                "height": config.VIDEO_SIZE_HEIGHT,
+            },
         )
 
         # Trace activity
         context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
         page = context.new_page()
-        page.set_viewport_size({"width": 1920, "height": 1080})
-        page.goto("https://katalon-demo-cura.herokuapp.com/")
+        page.set_viewport_size(
+            {"width": config.VIEW_PORT_SIZE_WIDTH, "height": config.VIEW_PORT_SIZE_HEIGHT}
+        )
+        page.goto(config.URL)
 
         # Homepage
         page.click(select.MENU_TOGGLE)
@@ -40,9 +59,14 @@ def test_demo():
         page.select_option(select.FACILITY_DROPDOWNLIST, value="Seoul CURA Healthcare Center")
         page.click(select.APPLY_FOR_HOSTPITAL_READMISSION_CHECKBOX)
         page.click(select.HEALTHCARE_PROGRAM_MEDICAID_RB)
-        page.type(select.VISIT_DATE_CALENDAR, "02/11/2025")
+        page.type(
+            select.VISIT_DATE_CALENDAR,
+            generate_random_date(pendulum.date(2020, 1, 1), pendulum.date(2025, 12, 31)),
+        )
         page.keyboard.press("Tab")
-        page.fill(select.COMMENT_INPUT_TEXT, "Apping Ganteng :P")
+        page.fill(
+            select.COMMENT_INPUT_TEXT, random.choice(["Apping Ganteng :P", "Alek Sayang Ibu ❤️"])
+        )
         page.screenshot(path="screenshot/003-appointment-form.png", full_page=True)
         page.click(select.BOOK_APPOINTMENT_BTN)
         page.screenshot(path="screenshot/004-appointment-confirmation.png", full_page=True)
