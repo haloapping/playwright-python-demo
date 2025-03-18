@@ -10,7 +10,7 @@ import config
 from selector import select
 
 
-def generate_random_date(start_date, end_date):
+def random_date(start_date, end_date):
     days_diff = (end_date - start_date).days
     random_days = random.randint(0, days_diff)
     random_date = start_date.add(days=random_days)
@@ -28,8 +28,8 @@ def test_demo():
         context = browser.new_context(
             record_video_dir="screen-record/",
             record_video_size={
-                "width": config.VIDEO_SIZE_WIDTH,
-                "height": config.VIDEO_SIZE_HEIGHT,
+                "width": config.VIDEO_WIDTH_SIZE,
+                "height": config.VIDEO_HEIGHT_SIZE,
             },
         )
 
@@ -38,7 +38,7 @@ def test_demo():
 
         page = context.new_page()
         page.set_viewport_size(
-            {"width": config.VIEW_PORT_SIZE_WIDTH, "height": config.VIEW_PORT_SIZE_HEIGHT}
+            {"width": config.VIEW_PORT_WIDTH_SIZE, "height": config.VIEW_PORT_HEIGHT_SIZE}
         )
         page.goto(config.URL)
 
@@ -61,7 +61,7 @@ def test_demo():
         page.click(select.HEALTHCARE_PROGRAM_MEDICAID_RB)
         page.type(
             select.VISIT_DATE_CALENDAR,
-            generate_random_date(pendulum.date(2020, 1, 1), pendulum.date(2025, 12, 31)),
+            random_date(pendulum.date(2020, 1, 1), pendulum.date(2025, 12, 31)),
         )
         page.keyboard.press("Tab")
         page.fill(
