@@ -65,7 +65,8 @@ def test_demo():
         )
         page.keyboard.press("Tab")
         page.fill(
-            select.COMMENT_INPUT_TEXT, random.choice(["Apping Ganteng :P", "Alek Sayang Ibu ❤️"])
+            select.COMMENT_INPUT_TEXT,
+            random.choice(["Apping Ganteng 😉", "Alek Sayang Ibu ❤️", "Tangan Yoga bau rokok 🚬"]),
         )
         page.screenshot(path="screenshot/003-appointment-form.png", full_page=True)
         page.click(select.BOOK_APPOINTMENT_BTN)
