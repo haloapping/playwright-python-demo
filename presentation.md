@@ -6,7 +6,7 @@ marp: true
 
 ![Playwright Logo](/images/playwright.svg)
 
-by [haloapping](https://haloapping.com/)
+by [@haloapping](https://haloapping.com/)
 
 ---
 
