@@ -11,4 +11,4 @@ Demo Playwright app internal Katalon team. Simple app to introduce basic feature
 - Install all deps with command `pip install -r requirements.txt`.
 - Install all browsers (chromium, firefox and webkit) `playwright install`.
 - Run main program with command `pytest test_main.py --browser chromium`.
-- You can run trace file after run main program with command `playwright show-trace trace.zip`.
+- You can run trace file after run main program with command `playwright show-trace trace.zip` or import trace file (trace.zip) to [trace-playwright](https://trace.playwright.dev/).
