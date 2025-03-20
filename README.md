@@ -7,7 +7,7 @@ Demo Playwright app internal Katalon team. Simple app to introduce basic feature
 - Clone project with git.
 - Install Python Intepreter [Python Website](https://www.python.org/)
 - Run command `python -m venv .env` on root project.
-- Activate env with command `cd .env/Scripts && .\activate` on Windows and `cd .env/bin && source activate` on Linux/MacOS
+- Activate env with command `cd .env/Scripts && .\activate && cd ../..` on Windows and `cd .env/bin && source activate && cd ../..` on Linux/MacOS
 - Install all deps with command `pip install -r requirements.txt`.
 - Install all browsers (chromium, firefox and webkit) `playwright install`.
 - Run main program with command `pytest test_main.py --browser chromium`.
