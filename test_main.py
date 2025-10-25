@@ -109,6 +109,10 @@ def test_demo():
         wb.save("appointment.xlsx")
         wb.close()
 
+        page.click(locator.GOTO_HOMEPAGE_BTN)
+        page.click(locator.MENU_TOGGLE)
+        page.click(locator.LOGOUT_MENU_TEXT)
+
         context.tracing.stop(path="trace.zip")
 
         context.close()
