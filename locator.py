@@ -1,6 +1,7 @@
 # Home page
 MENU_TOGGLE = "#menu-toggle"
 LOGIN_MENU_TEXT = "#sidebar-wrapper > ul > li:nth-child(4) > a"
+LOGOUT_MENU_TEXT = "#sidebar-wrapper > ul > li:nth-child(6) > a"
 
 # Login page
 USERNAME_TEXT = "#login > div > div > div.col-sm-offset-3.col-sm-6 > form > div.alert.alert-info > div:nth-child(1) > div > div > input"
@@ -26,3 +27,5 @@ APPLY_FOR_HOSTPITAL_READMISSION_TEXT = "#hospital_readmission"
 HEALTHCARE_PROGRAM_TEXT = "#program"
 VISIT_DATE_TEXT = "#visit_date"
 COMMENT_TEXT = "#comment"
+
+GOTO_HOMEPAGE_BTN = "#summary > div > div > div:nth-child(7) > p > a"
