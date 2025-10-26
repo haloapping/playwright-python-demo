@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 
 import config
 import locator
-import db
+from db import pool
 
 
 def random_date(start_date, end_date):
@@ -84,27 +84,30 @@ def test_demo():
         )
 
         # Save appointment to database
-        conn = db.init_db()
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                INSERT INTO appointments(id, facility, apply_for_hospital_readmission, healthcare_program, visit_date, comment, status)
-                VALUES(%s, %s, %s, %s, %s, %s, %s);
-                """,
-                (
-                    uuid.uuid4(),
-                    page.inner_text(locator.FACILITY_TEXT),
-                    page.inner_text(locator.APPLY_FOR_HOSTPITAL_READMISSION_TEXT),
-                    page.inner_text(locator.HEALTHCARE_PROGRAM_TEXT),
-                    page.inner_text(locator.VISIT_DATE_TEXT),
-                    page.inner_text(locator.COMMENT_TEXT),
-                    "Appointment Success",
-                ),
-            )
-        conn.commit()
-        cur.close()
-        conn.close()
-
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO appointments(id, facility, apply_for_hospital_readmission, healthcare_program, visit_date, comment, status)
+                        VALUES(%s, %s, %s, %s, %s, %s, %s);
+                        """,
+                        (
+                            uuid.uuid4(),
+                            page.inner_text(locator.FACILITY_TEXT),
+                            page.inner_text(locator.APPLY_FOR_HOSTPITAL_READMISSION_TEXT),
+                            page.inner_text(locator.HEALTHCARE_PROGRAM_TEXT),
+                            page.inner_text(locator.VISIT_DATE_TEXT),
+                            page.inner_text(locator.COMMENT_TEXT),
+                            "Appointment Success",
+                        ),
+                    )
+                    cur.close()
+                conn.commit()
+        except Exception as e:
+            print(f"Caught: {e}")
+            raise
+        
         # Save appointment to excel file
         if not os.path.exists("appointment.xlsx"):
             wb = Workbook()
