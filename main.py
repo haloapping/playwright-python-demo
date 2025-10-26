@@ -13,8 +13,8 @@ from db import pool
 
 os.makedirs("logs", exist_ok=True)
 now = pendulum.now()
-formatted = now.format("YYYY-MM-DD_HH-mm-ss")
-snoop.install(out=f"logs/{formatted}.log")
+format_name = now.format("YYYY-MM-DD_HH-mm-ss")
+snoop.install(out=f"logs/{format_name}.log")
 
 
 @snoop
@@ -33,7 +33,7 @@ def run():
         # Config browser and context page
         browser = p.chromium.launch(headless=config.HEADLESS, slow_mo=config.SLOW_MO)
         context = browser.new_context(
-            record_video_dir="screen-record/",
+            record_video_dir=f"screen-record/{format_name}",
             record_video_size={
                 "width": config.VIDEO_WIDTH_SIZE,
                 "height": config.VIDEO_HEIGHT_SIZE,
@@ -54,7 +54,7 @@ def run():
 
         # Homepage
         page.click(locator.MENU_TOGGLE)
-        page.screenshot(path="screenshot/001-homepage.png", full_page=True)
+        page.screenshot(path=f"screenshot/{format_name}/001-homepage.png", full_page=True)
         page.click(locator.LOGIN_MENU_TEXT)
 
         # Login page
@@ -62,7 +62,7 @@ def run():
         password = page.input_value(locator.PASSWORD_TEXT)
         page.fill(locator.USERNAME_INPUT_TEXT, username)
         page.fill(locator.PASSWORD_INPUT_TEXT, password)
-        page.screenshot(path="screenshot/002-loginpage.png", full_page=True)
+        page.screenshot(path=f"screenshot/{format_name}/002-loginpage.png", full_page=True)
         page.click(locator.LOGIN_BTN)
 
         # Appointment page
@@ -82,10 +82,10 @@ def run():
                 ["Apping Ganteng 😉", "Alek Sayang Ibu ❤️", "Tangan Yoga bau rokok 🚬"]
             ),
         )
-        page.screenshot(path="screenshot/003-appointment-form.png", full_page=True)
+        page.screenshot(path=f"screenshot/{format_name}/003-appointment-form.png", full_page=True)
         page.click(locator.BOOK_APPOINTMENT_BTN)
         page.screenshot(
-            path="screenshot/004-appointment-confirmation.png", full_page=True
+            path=f"screenshot/{format_name}/004-appointment-confirmation.png", full_page=True
         )
 
         # Save appointment to database
