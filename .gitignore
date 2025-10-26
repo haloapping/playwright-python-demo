@@ -1,6 +1,7 @@
 .env
 .pytest_cache
 __pycache__
+logs/
 screenshot/
 screen-record/
 trace.zip
