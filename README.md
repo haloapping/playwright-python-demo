@@ -10,5 +10,5 @@ Demo Playwright app internal Katalon team. Simple app to introduce basic feature
 - Activate env with command `cd .env/Scripts && .\activate && cd ../..` on Windows and `cd .env/bin && source activate && cd ../..` on Linux/MacOS
 - Install all deps with command `pip install -r requirements.txt`.
 - Install all browsers (chromium, firefox and webkit) `playwright install`.
-- Run main program with command `pytest test_main.py --browser chromium`.
+- Run main program with command `python3 -m main` for linux or if you using Windows run with command `python -m main`.
 - You can run trace file after run main program with command `playwright show-trace trace.zip` or import trace file (trace.zip) to [trace-playwright](https://trace.playwright.dev/).
