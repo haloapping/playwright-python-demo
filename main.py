@@ -54,7 +54,9 @@ def run():
 
         # Homepage
         page.click(locator.MENU_TOGGLE)
-        page.screenshot(path=f"screenshot/{format_name}/001-homepage.png", full_page=True)
+        page.screenshot(
+            path=f"screenshot/{format_name}/001-homepage.png", full_page=True
+        )
         page.click(locator.LOGIN_MENU_TEXT)
 
         # Login page
@@ -62,7 +64,9 @@ def run():
         password = page.input_value(locator.PASSWORD_TEXT)
         page.fill(locator.USERNAME_INPUT_TEXT, username)
         page.fill(locator.PASSWORD_INPUT_TEXT, password)
-        page.screenshot(path=f"screenshot/{format_name}/002-loginpage.png", full_page=True)
+        page.screenshot(
+            path=f"screenshot/{format_name}/002-loginpage.png", full_page=True
+        )
         page.click(locator.LOGIN_BTN)
 
         # Appointment page
@@ -82,10 +86,13 @@ def run():
                 ["Apping Ganteng 😉", "Alek Sayang Ibu ❤️", "Tangan Yoga bau rokok 🚬"]
             ),
         )
-        page.screenshot(path=f"screenshot/{format_name}/003-appointment-form.png", full_page=True)
+        page.screenshot(
+            path=f"screenshot/{format_name}/003-appointment-form.png", full_page=True
+        )
         page.click(locator.BOOK_APPOINTMENT_BTN)
         page.screenshot(
-            path=f"screenshot/{format_name}/004-appointment-confirmation.png", full_page=True
+            path=f"screenshot/{format_name}/004-appointment-confirmation.png",
+            full_page=True,
         )
 
         # Save appointment to database
